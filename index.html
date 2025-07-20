@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RoadSights Gear Vault</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #000; /* Main background: Black */
+      --text: #fff; /* Main text: White */
+      --accent: #ff3b30; /* Accent color: Bright Red */
+      --gray-dark: #1a1a1a; /* Dark gray for product cards */
+      --gray-medium: #333; /* Medium gray for some text/borders */
+      --gray-light: #555; /* Lighter gray for subtle text */
+
+      --font-header: 'Montserrat', sans-serif;
+      --font-body: 'Open Sans', sans-serif;
+
+      --spacing-unit: 1rem;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      padding: 2rem var(--spacing-unit);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* --- General Elements --- */
+    .container {
+      max-width: 800px; /* Aligns with previous comfort-focused design */
+      margin: 0 auto;
+      padding: 0; /* Container itself shouldn't have padding, let sections handle it */
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      padding: 0.85rem 1.75rem; /* Slightly larger for impact */
+      border-radius: 8px; /* Slightly more rounded */
+      font-weight: 700; /* Bold */
+      font-size: 1.1rem; /* Slightly larger font */
+      transition: background 0.2s ease, transform 0.2s ease; /* Smooth transition for hover */
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    }
+    .btn:hover {
+      background: #e3342f; /* Slightly darker red */
+      transform: translateY(-2px); /* Lift effect on hover */
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    /* --- Header --- */
+    header {
+      text-align: center;
+      padding-top: var(--spacing-unit); /* Add a bit of top padding */
+      margin-bottom: 3.5rem; /* More space below header */
+    }
+    header h1 {
+      font-family: var(--font-header);
+      font-size: 3.2rem; /* Make it BIG and BOLD */
+      margin-bottom: 0.75rem;
+      letter-spacing: -1.5px; /* Tighten up for impact */
+      line-height: 1.1;
+    }
+    header p {
+      font-size: 1.15rem;
+      max-width: 600px;
+      margin: 0 auto 2.5rem; /* More space between text and button */
+      color: #aaa;
+    }
+
+    /* --- Products Section --- */
+    .products-grid { /* Renamed for clarity */
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Better responsive grid */
+      gap: 2.5rem; /* More space between products */
+      max-width: 800px;
+      margin: 0 auto; /* Center the grid */
+      padding-bottom: 2.5rem; /* Add padding below grid */
+    }
+    .product-card { /* Renamed for clarity */
+      background: var(--gray-dark);
+      padding: 1.75rem; /* More internal padding */
+      border-radius: 12px;
+      text-align: center;
+      transition: 0.2s ease, box-shadow 0.2s ease;
+      border: 1px solid rgba(255, 255, 255, 0.05); /* Subtle white border */
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+    .product-card:hover {
+      background: #111;
+      transform: translateY(-3px); /* Lift effect on hover */
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Stronger shadow on hover */
+    }
+    .product-card img {
+      width: 100%;
+      max-height: 200px; /* Slightly adjusted max height */
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 1.25rem; /* More space below image */
+    }
+    .product-card h2 {
+      font-family: var(--font-header);
+      font-size: 1.6rem; /* Slightly larger product titles */
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+    .product-card p {
+      color: #bbb; /* Slightly brighter than #ccc */
+      font-size: 1rem; /* Clearer font size */
+      margin-bottom: 1.5rem; /* More space above button */
+      line-height: 1.5;
+    }
+
+    /* --- Trust Section --- */
+    .trust-block { /* Renamed for clarity */
+      text-align: center;
+      margin-top: 4.5rem; /* More space above */
+      margin-bottom: 4.5rem; /* More space below */
+      font-size: 1.05rem;
+      color: #aaa;
+      max-width: 650px; /* Slightly wider text block */
+      margin-left: auto;
+      margin-right: auto;
+      padding: 1.5rem; /* Add padding for visual comfort */
+      background: var(--gray-dark); /* Dark background for the block */
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08); /* Subtle border */
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    .trust-block h3 {
+        font-family: var(--font-header);
+        font-size: 2.2rem; /* Prominent heading */
+        color: var(--text);
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+    }
+    .trust-block p {
+        margin-bottom: 1rem;
+        color: #bbb;
+    }
+    .trust-block p:last-of-type {
+        margin-bottom: 0;
+    }
+
+    /* --- Final CTA --- */
+    .final-cta {
+        text-align: center;
+        margin-bottom: 4rem; /* Space before footer */
+    }
+    .final-cta p {
+        font-size: 1.6rem; /* Impactful text */
+        font-family: var(--font-header);
+        color: var(--text);
+        margin-bottom: 2rem;
+        line-height: 1.3;
+    }
+
+    /* --- Footer --- */
+    footer {
+      margin-top: 5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #666; /* Slightly lighter gray */
+      border-top: 1px solid rgba(255, 255, 255, 0.05); /* Subtle top border */
+      padding-top: 1.5rem;
+    }
+
+    /* --- Mobile Adjustments --- */
+    @media (max-width: 768px) {
+      body {
+        padding: 1.5rem 0.75rem;
+      }
+      header h1 {
+        font-size: 2.5rem;
+      }
+      header p {
+        font-size: 1rem;
+      }
+      .btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+      }
+      .products-grid {
+        gap: 1.5rem;
+        padding-bottom: 1.5rem;
+      }
+      .product-card {
+        padding: 1.25rem;
+      }
+      .product-card h2 {
+        font-size: 1.4rem;
+      }
+      .product-card p {
+        font-size: 0.9rem;
+      }
+      .trust-block {
+        margin-top: 3.5rem;
+        margin-bottom: 3.5rem;
+        padding: 1rem;
+        font-size: 0.95rem;
+      }
+      .trust-block h3 {
+          font-size: 1.8rem;
+      }
+      .final-cta p {
+          font-size: 1.4rem;
+          margin-bottom: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+        header h1 {
+            font-size: 2rem;
+        }
+        .products-grid {
+            grid-template-columns: 1fr; /* Stack products on very small screens */
+        }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Caught on Camera. Just Like This.</h1>
+      <p>Look, you're here 'cause you dig the wild stuff I feature from the road, right? *Every single unscripted moment—the insane chaos, the super random acts of kindness, cops doing their thing, crashes, you name it. It's all caught by everyday folks using gear like this. So, I slapped together the **best tools for recording YOUR drive's full story* (or just savin' your butt when things go sideways).</p>
+      <a href="#product-stack" class="btn">👇 Show Me the Gear</a>
+    </header>
+
+    <main>
+      <section id="product-stack" class="products-grid">
+        <div class="product-card">
+          <img src="https://via.placeholder.com/600x300/000000/ffffff?text=Dashcam+That+Sees+Everything" alt="Dashcam">
+          <h2>📸 Dashcam That Sees It All in 4K</h2>
+          <p>Most clips on my channel? Yeah, they're filmed with cams like this. Day or night, this thing records *every single detail*—the good, the bad, and the just plain unbelievable. Don't miss a beat.</p>
+          <a href="#" class="btn">🔗 Check It on Amazon</a>
+        </div>
+
+        <div class="product-card">
+          <img src="https://via.placeholder.com/600x300/000000/ffffff?text=Emergency+Tool" alt="Safety Tool">
+          <h2>🧯 The “Just In Case” Tool Everyone Skips</h2>
+          <p>Not every road story ends with high-fives. This little combo tool cuts seatbelts and smashes windows—*your get-out-of-jail-free card* if you're ever trapped. Trust me, I've seen clips where this would've been a lifesaver.</p>
+          <a href="#" class="btn">🔗 See Product</a>
+        </div>
+
+        <div class="product-card">
+          <img src="https://via.placeholder.com/600x300/000000/ffffff?text=Phone+Mount+That+Sticks" alt="Phone Mount">
+          <h2>📱 The Phone Mount That Doesn’t Bail</h2>
+          <p>How many epic clips start with someone fumbling their phone? Too many. This mount holds tight, no drama, no disasters, making sure *your footage stays steady* even when things get wild.</p>
+          <a href="#" class="btn">🔗 Get It on Amazon</a>
+        </div>
+
+        <div class="product-card">
+          <img src="https://via.placeholder.com/600x300/000000/ffffff?text=Road+Rage+Club+Shirt" alt="Shirt">
+          <h2>👕 RoadSights Club — Official Shirt</h2>
+          <p>You've watched enough road madness to know. It's time to show it. This shirt's for those of us who appreciate the *unfiltered, unpredictable reality of the road*. Wear it proud.</p>
+          <a href="#" class="btn">🔗 Buy the Shirt</a>
+        </div>
+      </section>
+
+      <div class="trust-block">
+        <h3>Why These? (No BS, Just Facts)</h3>
+        <p>So, my channel? It's all about sharing the *craziest, most surprising, heartwarming, and just plain WTF road moments* out there. And guess what? This is the actual gear folks use to record most of what you're watching.</p>
+        <p>No sponsors pulling strings, no fake hype. If it didn't actually work, it wouldn't be in my videos—and it definitely wouldn't be on this list. Simple as that.</p>
+        <p>If you click one of these links and buy something, I might get a tiny commission. Doesn't cost you extra, but it helps keep the *unfiltered road content* coming. Win-win, right?</p>
+      </div>
+
+      <div class="final-cta">
+        <p>Alright, so *grab the gear. Start capturing **your road's full, wild story*. Just try not to become my next viral clip, alright?</p>
+        <a href="#product-stack" class="btn">View All Recommendations</a>
+      </div>
+    </main>
+
+    <footer>
+      &copy; 2025 RoadSights. All moments reserved.
+    </footer>
+  </div>
+</body>
